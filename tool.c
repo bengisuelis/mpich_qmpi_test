@@ -3,10 +3,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdarg.h>
-/*#include <Python.h>
-#include "../src/dispatch.h"
-#include "../src/python_injection.h"
-*/
 #ifndef _EXTERN_C_
 #ifdef __cplusplus
 #define _EXTERN_C_ extern "C"
@@ -98,14 +94,6 @@ void Injection  (int tool_id) {
       	my_tool_struct.my_tool_id = tool_id;
 	QMPI_Register_tool_storage( tool_id, &my_tool_struct );
 	printf("No errors until here \n ");
-/*
-	QMPI_Register_function(tool_id, MPI_COMM_RANK_T,	get_function_pointer("MPI_Comm_rank"));
-	QMPI_Register_function(tool_id, MPI_COMM_SIZE_T, 	get_function_pointer("MPI_Comm_size"));
-	QMPI_Register_function(tool_id, MPI_FINALIZE_T, 	get_function_pointer("MPI_Finalize"));
-	QMPI_Register_function(tool_id, MPI_INIT_T, 		get_function_pointer("MPI_Init"));
-	QMPI_Register_function(tool_id, MPI_RECV_T, 		get_function_pointer("MPI_Recv"));
-	QMPI_Register_function(tool_id, MPI_SEND_T,		get_function_pointer("MPI_Send"));
-*/
     	QMPI_Register_function(tool_id, MPI_FINALIZE_T, (void (*)(void)) &Test_Finalize);
     	QMPI_Register_function(tool_id, MPI_INIT_T, (void (*)(void)) &Test_Init);
     	QMPI_Register_function(tool_id, MPI_COMM_RANK_T, (void (*)(void)) &Test_Comm_rank);
